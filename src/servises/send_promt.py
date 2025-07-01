@@ -69,7 +69,7 @@ def get_gemini_answer(organization_id: str):
     model = genai.GenerativeModel(model_name=config.gpt_key.model)
     prompt = get_daily_company_statistics_prompt(organization_id, get_yesterday_date())
     response = model.generate_content(prompt)
-    print(response.text)
+    return extract_json(response.text)
 
 
 def get_gemini_answer_testing_date(organization_id: str, date: str):
@@ -79,5 +79,5 @@ def get_gemini_answer_testing_date(organization_id: str, date: str):
     model = genai.GenerativeModel(model_name=config.gpt_key.model)
     prompt = get_daily_company_statistics_prompt(organization_id, date)
     response = model.generate_content(prompt)
-    return response.text
+    return extract_json(response.text)
 
