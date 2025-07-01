@@ -9,3 +9,6 @@ __pycache__/
 
 .vscode/
 .pytest_cache
+
+playground.py
+second_playground.py

@@ -2,6 +2,7 @@ from fastapi import FastAPI
 from config.session import init_mongo
 import uvicorn
 
+
 app = FastAPI()
 
 from config import load_config
@@ -12,6 +13,7 @@ app.include_router(router)
 
 if __name__ == "__main__":
     init_mongo()
+
     config = load_config()
     uvicorn.run(
         app,

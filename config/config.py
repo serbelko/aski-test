@@ -21,6 +21,12 @@ class Host:
 
 
 @dataclass
+class GptApi:
+    gpt_key: str
+    model: str
+
+
+@dataclass
 class Db:
     db_url: str
     db_name: str
@@ -31,6 +37,8 @@ class Config:
     port: Port
     host: Host
     db: Db
+    gpt_key: GptApi
+    
 
 
 def load_config() -> Config:
@@ -40,4 +48,5 @@ def load_config() -> Config:
         host=Host(host=getenv("HOST")),
         db=Db(db_url=getenv("DB_URL"),
                   db_name=getenv('DB_NAME')),
+        gpt_key=GptApi(gpt_key=getenv("GEMINI_KEY"), model=getenv('GEMINI_MODEL'))
     )
