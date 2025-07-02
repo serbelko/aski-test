@@ -1,5 +1,6 @@
 from datetime import datetime, timedelta
 
+
 def parse_d_field(d: str) -> str:
     """Преобразует d-поле из 'YYMMDDhhmm' в 'YYYY-MM-DD' 
     используется для парса сообщений тг"""

@@ -1,9 +1,11 @@
 from config import get_collection
-from src.servises.utils import parse_d_field
+from src.servises.utils import parse_d_field, convert_date_to_russian_format
 from config import get_collection
 from typing import List, Dict
+import logging
 
 
+logger = logging.getLogger(__name__)
 def get_organization_name(organization_id: str):
     """Получить имя организации по айди"""
     cursor = get_collection('organization').find({'id': organization_id})
@@ -11,12 +13,17 @@ def get_organization_name(organization_id: str):
         name = list(cursor)[0]['name']
         return name
     except IndexError:
-        print('Такой компании не существует')
+        logging.error('Компания по отправленному индексу не существет')
         return None
 
 
 def get_list_meetings(organization_name: str, date: str):
     """Получить список с запиьсю всех встреч за определённый день в Json-формате"""
+    try:
+        date = convert_date_to_russian_format(date)
+    except Exception as e:
+        logging.error(f'Неправильный формат даты для get_list. Ошибка: {e}')
+
     cursor = get_collection('organization').find({'organization': organization_name,
                                                   'date': date})
     return list(cursor)
@@ -38,5 +45,5 @@ def get_messages_from_tg(organization: str, date_str: str) -> List[Dict]:
                     if msg_date == date_str:
                         results.append(msg)
                 except Exception as e:
-                    print("Ошибка разбора даты:", e)
+                    logging.error(f'Ошибка в бд: дата в тг не персится. Ошибка: {e}')
     return results
