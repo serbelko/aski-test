@@ -13,7 +13,7 @@
 
 1. **Клонируйте репозиторий:**
     ```bash
-    git clone <repo-url>
+    git clone https://github.com/serbelko/aski-test.git
     cd for_aski
     ```
 
@@ -69,7 +69,7 @@ docker-compose run --rm tests
 - `main.py` — запуск приложения
 - `src/api/` — маршруты FastAPI
 - `src/servises/` — бизнес-логика и интеграции
-- `config/` — настройки и подключение к MongoDB
+- `config/` — настройки и подключение к MongoDB, а также настройки виртуального окружения
 - `tests/` — тесты
 
 ## Логи
