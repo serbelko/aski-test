@@ -1,5 +1,4 @@
 import google.generativeai as genai
-from config import init_mongo
 import re
 import json
 from config import config
@@ -64,7 +63,6 @@ def get_daily_company_statistics_prompt(organization_id: str, date: str) -> str:
 
 def get_gemini_answer(organization_id: str):
     """Возвращает ответ Gmini по указанной дате"""
-    init_mongo()
     genai.configure(api_key=config.gpt_key.gpt_key)
     model = genai.GenerativeModel(model_name=config.gpt_key.model)
     prompt = get_daily_company_statistics_prompt(organization_id, get_yesterday_date())
@@ -74,7 +72,6 @@ def get_gemini_answer(organization_id: str):
 
 def get_gemini_answer_testing_date(organization_id: str, date: str):
     """Возвращает ответ Gmini по указанной дате"""
-    init_mongo()
     genai.configure(api_key=config.gpt_key.gpt_key)
     model = genai.GenerativeModel(model_name=config.gpt_key.model)
     prompt = get_daily_company_statistics_prompt(organization_id, date)

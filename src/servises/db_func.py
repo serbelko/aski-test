@@ -30,7 +30,8 @@ def get_messages_from_tg(organization: str, date_str: str) -> List[Dict]:
 
     cursor = collection.find({"organization": organization})
     for doc in cursor:
-        for msg in doc.get("chat_content", []):
+        chat_content = doc.get("chat_content") or []
+        for msg in chat_content:
             if "d" in msg:
                 try:
                     msg_date = parse_d_field(msg["d"])
