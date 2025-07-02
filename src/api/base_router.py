@@ -1,6 +1,6 @@
 from fastapi import APIRouter, HTTPException
 from src.schemas.base_scheme import ChatRequest
-from src.servises.send_promt import get_gemini_answer
+from src.servises.send_promt import get_gemini_answer, get_gemini_answer_testing_date
 router = APIRouter()
 
 
@@ -24,4 +24,3 @@ async def process_chat(data: ChatRequest):
             "chat_id": data.chat_id,
             "organization_id": data.organization_id
         }
-

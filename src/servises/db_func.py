@@ -24,7 +24,7 @@ def get_list_meetings(organization_name: str, date: str):
     except Exception as e:
         logging.error(f'Неправильный формат даты для get_list. Ошибка: {e}')
 
-    cursor = get_collection('organization').find({'organization': organization_name,
+    cursor = get_collection('meetings').find({'organization': organization_name,
                                                   'date': date})
     return list(cursor)
 
