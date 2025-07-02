@@ -1,19 +1,21 @@
 from fastapi import FastAPI
-from config.session import init_mongo
 import uvicorn
-
-
-app = FastAPI()
+import logging
 
 from config import config, init_logging
+from config import init_mongo
 from src.api import router
+
+app = FastAPI()
+init_logging()
+logger = logging.getLogger(__name__)
 
 app = FastAPI()
 app.include_router(router)
 
 if __name__ == "__main__":
     init_mongo()
-    init_logging()
+    logger.info("Приложение запущенно") 
     uvicorn.run(
         app,
         host=config.host.host,

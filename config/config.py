@@ -6,10 +6,14 @@ from dotenv import load_dotenv
 from .base import getenv
 
 def init_logging():
-    logger = logging.getLogger(__name__)
-    logger.setLevel(logging.INFO)
-    handler = logging.FileHandler("app.log")
-
+    logging.basicConfig(
+        level=logging.INFO,
+        format="%(asctime)s - %(levelname)s - %(message)s",
+        handlers=[
+            logging.FileHandler("app.log", encoding="utf-8"),
+            logging.StreamHandler()
+        ]
+    )
 
 @dataclass
 class Port:

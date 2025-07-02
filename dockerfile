@@ -1,4 +1,4 @@
-FROM python:latest
+FROM python:3.11-slim
 
 WORKDIR /app
 
@@ -10,5 +10,5 @@ RUN pip install -r requirements.txt
 COPY . .
 
 # Открываем порт и запускаем
-EXPOSE 8080
-ENTRYPOINT ["python", "app/main.py"]
+EXPOSE 8082
+CMD ["python", "main.py"]
